@@ -18,4 +18,5 @@ npm install snyk -g                                    // installation
 snyk code test --sarif > results.sarif                 // run Snyk Code in the current directory
 snyk test --sarif > sca-results.sarif                  // run Snyk Open Source (SCA) in the current directory
 snyk container test --sarif ubuntu > container.sarif   // run Snyk Container on the specified Docker image
+snyk iac test --sarif > iac.sarif                      // run Snyk Infrastructure as Code
 ```
