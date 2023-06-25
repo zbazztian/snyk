@@ -10,6 +10,7 @@
 
 * [Vulnerability database](https://security.snyk.io/)
 * [Vulnerability database information](https://docs.snyk.io/scan-application-code/snyk-open-source/starting-to-fix-vulnerabilities/using-the-snyk-vulnerability-database)
+* [Supported ecosystems](https://docs.snyk.io/scan-application-code/snyk-open-source/snyk-open-source-supported-languages-and-package-managers)
 
 ## Snyk CLI cheat sheet ##
 Cheat sheet:
