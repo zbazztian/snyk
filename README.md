@@ -30,3 +30,6 @@ snyk iac test --sarif > iac.sarif                      // run Snyk Infrastructur
 
 ## How Snyk handles data ##
 * [Policy](https://docs.snyk.io/more-info/how-snyk-handles-your-data)
+
+## Roadmap ##
+* [DeepCode AI Fix](https://youtu.be/R_y_G6OlX_8)
