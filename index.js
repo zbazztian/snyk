@@ -1,15 +1,52 @@
 const semver = require('semver');
+const express = require('express');
+const app = express();
+const escapeHtml = require('escape-html');
 
-const lengths_2 = [2000, 4000, 8000, 16000, 32000, 64000, 128000];
-console.log("n[+] Valid range - Test payloads");
-for (let i = 0; i < 5; i++){
-  let value ='1.2.3' + ' '.repeat(lengths_2[i]) + '<1.3.0';
-  const start = Date.now();
-  semver.validRange(value);
-  // semver.minVersion(value)
-  // semver.maxSatisfying(["1.2.3"], value)
-  // semver.minSatisfying(["1.2.3"], value)
-  // new semver.Range(value, {})
-  const end = Date.now();
-  console.log('length=%d, time=%d ms', value.length, end - start);
+function checkUserName(userName){
+  return userName === 'SEB' || userName === 'SNYK';
 }
+
+function formatUserName(userName){
+  return userName.toUpperCase();
+}
+
+function printResponse(userName, res){
+  let formatted = formatUserName(userName);
+  if(checkUserName(formatted)){
+    res.send('The user is a valid user.');
+  }else{
+    res.send(`User ${formatted} is an invalid user.`);
+  }
+}
+
+app.get('/users/checkname', function (req, res) {
+  const userName = req.query.name;
+  printResponse(userName, res);
+});
+
+function makeRegex(tag){
+  return `<${tag}>([^<]*)</${tag}>`;
+}
+
+app.get('/html/extract', function (req, res) {
+  const tag = req.query.tag;
+  const code = req.query.code;
+  const regex = makeRegex(tag);
+  const re = new RegExp(regex);
+  const result = code.match(re)[1];
+  const escapedResult = escapeHtml(result);
+  const escapedCode = escapeHtml(code);
+  const escapedTag = escapeHtml(tag);
+  res.send(`The contents of tag "${escapedTag}" within code "${escapedCode}" is "${escapedResult}".`);
+});
+
+app.get('/product/checkversion', function (req, res) {
+  const version = req.query.version;
+  const result = escapeHtml(semver.validRange(version));
+  res.send(`Result of version check: ${result}.`);
+});
+
+app.listen(8081, function () {
+  console.log('Application running on port 8081!');
+});

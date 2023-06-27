@@ -14,23 +14,24 @@
 ## Snyk CLI cheat sheet ##
 Cheat sheet:
 ```shell
-npm install snyk -g                                    // installation
-snyk test --sarif > sca-results.sarif                  // run Snyk Open Source (SCA) in the current directory
-snyk code test --sarif > results.sarif                 // run Snyk Code in the current directory
-snyk container test --sarif ubuntu > container.sarif   // run Snyk Container on the specified Docker image
-snyk iac test --sarif > iac.sarif                      // run Snyk Infrastructure as Code
+npm install snyk -g                                           // installation
+snyk test --all-projects --sarif > sca-results.sarif          // run Snyk Open Source (SCA) in the current directory
+snyk code test --sarif > sast-results.sarif                   // run Snyk Code in the current directory
+snyk container test --sarif ubuntu > container-results.sarif  // run Snyk Container on the specified Docker image
+snyk iac test --sarif > iac-results.sarif                     // run Snyk Infrastructure as Code
+snyk test --json | npx snyk2spdx | jq > sbom.json             // Software Bill of Materials
 ```
 
 ## Case Studies ##
 * [Snyk Customer Value Study](https://snyk.io/reports/customer-value-study-2022/)
-* [Atlassian](https://snyk.io/case-studies/atlassian/): "One of the main benefits of Snyk is that it’s easier for developers to integrate into their pipelines as well." (Matthew Bass, Product Security Engineer)
-* [Citrix](https://snyk.io/case-studies/citrix/): "For some tools you have to be a master of the tool to use it, but with the Snyk tool, whether you’re a developer or a manager, you can navigate the UI, understand the dashboards and make sense of the data." (Valentin Potier, Security Engineer)
+* [Atlassian](https://snyk.io/case-studies/atlassian/): "We were using our previous tool as a stopgap for container scanning on our Trello product, but we needed a product that could scale. That meant we wanted a product where we didn’t have to manage our own infrastructure and that offered developer-friendly data for easier vulnerability remediation." (Will Ratner, Senior Product Security Engineer)
+* [Citrix](https://snyk.io/case-studies/citrix/): "Our developers use virtually every language except COBOL and we use both cloud services and on-prem systems. Snyk tested well in our diverse environment and ticked off more boxes than the other tools we were testing." (Rob Hather, Security Product Manager)
 * [Reddit](https://snyk.io/case-studies/reddit/): "Snyk is very dev-centric and was also easy for us to scale out without being disruptive to developers." (Spencer Koch, Reddit Security)
 
 ## How Snyk handles data ##
 * [Policy](https://docs.snyk.io/more-info/how-snyk-handles-your-data)
 
-## Roadmap ##
+## Upcoming features ##
 * [DeepCode AI Fix](https://youtu.be/R_y_G6OlX_8)
 * PR checks for Snyk Code
 * C/C++ analysis

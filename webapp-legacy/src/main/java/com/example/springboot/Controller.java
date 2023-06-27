@@ -3,6 +3,9 @@ package com.example.springboot;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.thoughtworks.xstream.XStream;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 
 @RestController
 public class Controller {
@@ -35,14 +38,22 @@ public class Controller {
 		public void setEmail(String email){ this.email = email; }
 	}
 
-	@GetMapping("/contacts/create")
-	public String create(String serializedContact) {
+	@GetMapping("/contacts/xml/create")
+	public String createFromXml(String serializedContact) {
 		XStream xstream = new XStream();
 		xstream.setClassLoader(Contact.class.getClassLoader());
 		xstream.alias("contact", ContactImpl.class);
 		xstream.ignoreUnknownElements();
 		Contact c = (Contact)xstream.fromXML(serializedContact);
 		System.out.println(c.getFirstName());
-		return "Greetings from Spring Boot!";
+		return "Contact created!";
+	}
+
+	@GetMapping("/contacts/json/create")
+	public String createFromJson(String serializedContact) throws IOException, UnsupportedEncodingException  {
+		ObjectMapper om = new ObjectMapper();
+		//om.enableDefaultTyping();
+		om.readValue(serializedContact.getBytes("UTF-8"), Contact.class);
+		return "Contact created!";
 	}
 }
