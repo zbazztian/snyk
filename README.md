@@ -1,6 +1,5 @@
 # Snyk POC Links #
 
-
 ## Snyk Code (SAST) ##
 
 * [Supported languages and frameworks](https://docs.snyk.io/scan-application-code/snyk-code/snyk-code-language-and-framework-support)
@@ -33,3 +32,8 @@ snyk iac test --sarif > iac.sarif                      // run Snyk Infrastructur
 
 ## Roadmap ##
 * [DeepCode AI Fix](https://youtu.be/R_y_G6OlX_8)
+* PR checks for Snyk Code
+* C/C++ analysis
+
+## Pricing ##
+* [Plans](https://snyk.io/plans/)
